@@ -1,5 +1,14 @@
-name: Example workflow for Maven using Snyk
-on: push
+name: SCA analysis - Snyk
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_run:
+        workflows: ['SonarQube Cloud']
+        types:
+            - completed
 jobs:
   security:
     runs-on: ubuntu-latest
